@@ -8,7 +8,7 @@ driver = webdriver.Chrome(executable_path='C:/Users/minahil/Desktop/chromedriver
 driver.get('https://www.techradar.com/')
 results = []
 news = []
-list = []
+list1 = []
 x = []
 y = []
 content = driver.page_source
@@ -27,8 +27,8 @@ for b in soup.find_all(attrs='content'):
 
 for c in soup.find_all(attrs='popular-box__articles-list'):
     row = c.find('li')
-    if row not in list:
-        list.append(row.text)
+    if row not in list1:
+        list1.append(row.text)
 
 for d in soup.find_all(attrs='byline'):
     author = d.find('span')
@@ -52,5 +52,5 @@ df.to_csv('author.csv', index=False, encoding='utf-8')
 df = pd.DataFrame({'Regions':y})
 df.to_csv('regions.csv', index=False, encoding='utf-8')
 
-df = pd.DataFrame({'Most Popular':list})
+df = pd.DataFrame({'Most Popular':list1})
 df.to_csv('popular.csv', index=False, encoding='utf-8')
